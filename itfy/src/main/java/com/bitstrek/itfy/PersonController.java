@@ -3,6 +3,7 @@ package com.bitstrek.itfy;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +22,8 @@ public class PersonController {
 	}
 	
 	@RequestMapping("/persons")
+	//@PreAuthorize("#oauth2.hasScope('read')")
+	@PreAuthorize("true")
 	public Iterable<Person> persons() {
 		return personRepository.findAll();
 	}
